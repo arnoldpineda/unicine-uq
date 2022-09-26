@@ -2,10 +2,7 @@ package co.edu.uniquindio.unicine.entidades;
 
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
@@ -22,6 +19,7 @@ public class Autor implements Serializable {
     @EqualsAndHashCode.Include
     private Integer codigo;
 
+    @Column(length = 130, nullable = false)
     private String nombre;
 
 }

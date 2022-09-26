@@ -2,10 +2,7 @@ package co.edu.uniquindio.unicine.entidades;
 
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -25,8 +22,10 @@ public class Prestamo implements Serializable {
     @EqualsAndHashCode.Include
     private Integer codigo;
 
+    @Column(nullable = false)
     private LocalDateTime fechaPrestamo;
 
+    @Column(nullable = false)
     private LocalDate fechaDevolucion;
 
 }

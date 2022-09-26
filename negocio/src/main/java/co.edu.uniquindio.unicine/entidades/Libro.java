@@ -2,10 +2,9 @@ package co.edu.uniquindio.unicine.entidades;
 
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.Id;
+import javax.persistence.*;
+import javax.validation.constraints.Positive;
+import javax.validation.constraints.PositiveOrZero;
 import java.io.Serializable;
 
 @Entity
@@ -21,13 +20,17 @@ public class Libro implements Serializable {
     @EqualsAndHashCode.Include
     private String isbn;
 
+    @Column(nullable = false)
     private String nombre;
 
+    @PositiveOrZero
     private Integer unidades;
 
+    @PositiveOrZero
     private Integer anio;
 
     @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
     private Genero genero;
 
 }
