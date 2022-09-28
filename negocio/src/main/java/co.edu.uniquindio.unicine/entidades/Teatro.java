@@ -4,10 +4,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.List;
-
 
 @Entity
 @Getter
@@ -16,23 +13,31 @@ import java.util.List;
 @AllArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @ToString
-public class Prestamo implements Serializable {
+public class Teatro implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Include
     private Integer codigo;
 
-    @Column(nullable = false)
-    private LocalDateTime fechaPrestamo;
+    @Column(length = 100, nullable = false)
+    private String nombre;
 
     @Column(nullable = false)
-    private LocalDate fechaDevolucion;
+    private String direccion;
+
+    @Column(length = 15)
+    private String telefono;
 
     @ManyToOne
-    private Cliente cliente;
+    @JoinColumn(nullable = false)
+    private Ciudad ciudad;
 
-    @ManyToMany
-    private List<Libro> libros;
+    @ManyToOne
+    @JoinColumn(nullable = false)
+    private AdministradorTeatro administradorTeatro;
+
+    @OneToMany(mappedBy = "teatro")
+    private List<Sala> salas;
 
 }
