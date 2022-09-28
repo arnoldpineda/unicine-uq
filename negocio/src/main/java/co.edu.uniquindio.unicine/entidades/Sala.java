@@ -13,7 +13,7 @@ import java.util.List;
 @AllArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @ToString
-public class Ciudad implements Serializable {
+public class Sala implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,7 +23,15 @@ public class Ciudad implements Serializable {
     @Column(length = 100, nullable = false)
     private String nombre;
 
-    @OneToMany(mappedBy = "ciudad")
-    private List<Teatro> teatros;
+    @ManyToOne
+    @JoinColumn(nullable = false)
+    private Teatro teatro;
+
+    @ManyToOne
+    @JoinColumn(nullable = false)
+    private DistribuccionSillas distribuccionSillas;
+
+    @OneToMany(mappedBy = "sala")
+    private List<Funcion> funciones;
 
 }

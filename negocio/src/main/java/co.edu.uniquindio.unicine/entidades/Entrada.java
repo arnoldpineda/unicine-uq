@@ -1,29 +1,37 @@
 package co.edu.uniquindio.unicine.entidades;
 
+
 import lombok.*;
 
 import javax.persistence.*;
-import javax.validation.constraints.Email;
+import javax.validation.constraints.Positive;
+import javax.validation.constraints.PositiveOrZero;
 
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-@MappedSuperclass
+@Entity
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @ToString
-public class Persona {
+public class Entrada {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Include
     private Integer codigo;
 
-    @Email
-    @Column(length = 100, nullable = false, unique = true)
-    private String correo;
+    @Positive
+    private Float precio;
 
-    @Column(nullable = false, length = 16)
-    private String password;
+    @Positive
+    private Integer fila;
+
+    @Positive
+    private Integer columna;
+
+    @ManyToOne
+    @JoinColumn(nullable = false)
+    private Compra compra;
+
 }

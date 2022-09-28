@@ -13,7 +13,7 @@ import java.util.List;
 @AllArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @ToString
-public class Ciudad implements Serializable {
+public class Pelicula implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,7 +23,18 @@ public class Ciudad implements Serializable {
     @Column(length = 100, nullable = false)
     private String nombre;
 
-    @OneToMany(mappedBy = "ciudad")
-    private List<Teatro> teatros;
+    @Column(nullable = false)
+    private String sinopsis;
+
+    private String urlTrailer;
+
+    private String urlImagen;
+
+    private String estado;
+
+    private String reparto;
+
+    @OneToMany(mappedBy = "pelicula")
+    private List<Funcion> funciones;
 
 }

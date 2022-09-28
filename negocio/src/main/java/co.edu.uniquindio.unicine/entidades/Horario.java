@@ -3,7 +3,10 @@ package co.edu.uniquindio.unicine.entidades;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.PositiveOrZero;
 import java.io.Serializable;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 
 @Entity
@@ -13,17 +16,23 @@ import java.util.List;
 @AllArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @ToString
-public class Ciudad implements Serializable {
+public class Horario implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Include
     private Integer codigo;
 
-    @Column(length = 100, nullable = false)
-    private String nombre;
+    @PositiveOrZero
+    private Integer dia;
 
-    @OneToMany(mappedBy = "ciudad")
-    private List<Teatro> teatros;
+    private LocalTime hora;
+    
+    private LocalDate fechaInicio;
+
+    private LocalDate fechaFin;
+
+    @OneToMany(mappedBy = "horario")
+    private List<Funcion> funciones;
 
 }
