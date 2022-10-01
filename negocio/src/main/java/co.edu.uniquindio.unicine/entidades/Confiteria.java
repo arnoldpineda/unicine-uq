@@ -3,6 +3,7 @@ package co.edu.uniquindio.unicine.entidades;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.Positive;
 import java.io.Serializable;
 import java.util.List;
 
@@ -10,7 +11,6 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @ToString
 public class Confiteria implements Serializable {
@@ -20,7 +20,23 @@ public class Confiteria implements Serializable {
     @EqualsAndHashCode.Include
     private Integer codigo;
 
-    @ManyToMany(mappedBy = "confiterias")
-    private List<Compra> compras;
+    @Positive
+    @Column (nullable =false)
+    private float precio;
 
+    @Column (length = 100, nullable = false)
+    private String nombre;
+
+    @Column(nullable = false)
+    private String urlImagen;
+
+    @OneToMany(mappedBy = "confiteria")
+    private List<CompraConfiteria> compraConfiterias;
+
+    @Builder
+    public Confiteria(float precio, String nombre, String urlImagen) {
+        this.precio = precio;
+        this.nombre = nombre;
+        this.urlImagen = urlImagen;
+    }
 }

@@ -40,7 +40,12 @@ public class Compra implements Serializable {
     @OneToMany(mappedBy = "compra")
     private List<Entrada> entradas;
 
-    @ManyToMany
-    private List<Confiteria> confiterias;
+    @OneToMany (mappedBy = "compra")
+    private List<CompraConfiteria> compraConfiterias;
 
+    @ManyToOne
+    private Cliente cliente;
+
+    @OneToOne
+    private CuponCliente cuponCliente;
 }
