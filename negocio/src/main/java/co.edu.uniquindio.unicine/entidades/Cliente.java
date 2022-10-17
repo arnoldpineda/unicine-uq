@@ -37,20 +37,24 @@ public class Cliente implements Serializable {
     private boolean estado;
 
     @ElementCollection
-    private Map<String, String> telefono;
+    private List<String> telefonos;
 
+    @ToString.Exclude   //todo lo que sea one to many se exclude del ToString
     @OneToMany(mappedBy = "cupon")
     private List<CuponCliente> cuponClientes;
 
+    @ToString.Exclude
     @OneToMany (mappedBy = "cliente")
     private List<Compra> compras;
 
     @Builder
-    public Cliente(String nombre, String correo, String password, boolean estado, Map<String, String> telefono) {
+    public Cliente(Integer cedula, String nombre, String correo, String password, String fotoUrl, List<String> telefonos) {
+        this.cedula = cedula;
         this.nombre = nombre;
         this.correo = correo;
         this.password = password;
-        this.estado = estado;
-        this.telefono = telefono;
+        this.fotoUrl = fotoUrl;
+        this.telefonos = telefonos;
+        this.estado = false;
     }
 }
