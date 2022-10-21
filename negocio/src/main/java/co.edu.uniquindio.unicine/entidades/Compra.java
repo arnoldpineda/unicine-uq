@@ -11,10 +11,10 @@ import java.util.List;
 @Entity
 @Getter
 @Setter
+@ToString
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-@ToString
 public class Compra implements Serializable {
 
     @Id
@@ -37,15 +37,29 @@ public class Compra implements Serializable {
     @JoinColumn(nullable = false)
     private Funcion funcion;
 
+    @ToString.Exclude
     @OneToMany(mappedBy = "compra")
     private List<Entrada> entradas;
 
-    @OneToMany (mappedBy = "compra")
+    @ToString.Exclude
+    @OneToMany(mappedBy = "compra")
     private List<CompraConfiteria> compraConfiterias;
 
     @ManyToOne
+    @JoinColumn(nullable = false)
     private Cliente cliente;
 
     @OneToOne
     private CuponCliente cuponCliente;
+
+    @Builder
+
+    public Compra(MedioPago medioPago, Float valorTotal, Funcion funcion, Cliente cliente, CuponCliente cuponCliente) {
+        this.medioPago = medioPago;
+        this.fecha = LocalDateTime.now();
+        this.valorTotal = valorTotal;
+        this.funcion = funcion;
+        this.cliente = cliente;
+        this.cuponCliente = cuponCliente;
+    }
 }

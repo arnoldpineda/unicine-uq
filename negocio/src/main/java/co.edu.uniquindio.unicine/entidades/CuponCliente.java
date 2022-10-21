@@ -8,9 +8,9 @@ import java.io.Serializable;
 @Entity
 @Getter
 @Setter
+@ToString
 @NoArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-@ToString
 public class CuponCliente implements Serializable {
 
     @Id
@@ -18,7 +18,7 @@ public class CuponCliente implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer codigo;
 
-    @Column (nullable = false)
+    @Column(nullable = false)
     private Boolean estado;
 
     @ManyToOne
@@ -29,7 +29,8 @@ public class CuponCliente implements Serializable {
     @JoinColumn(nullable = false)
     private Cliente cliente;
 
-    @OneToOne (mappedBy = "cuponCliente")
+    @ToString.Exclude
+    @OneToOne(mappedBy = "cuponCliente")
     private Compra compra;
 
     @Builder

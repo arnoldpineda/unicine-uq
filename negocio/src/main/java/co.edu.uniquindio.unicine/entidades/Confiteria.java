@@ -10,9 +10,9 @@ import java.util.List;
 @Entity
 @Getter
 @Setter
+@ToString
 @NoArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-@ToString
 public class Confiteria implements Serializable {
 
     @Id
@@ -21,15 +21,16 @@ public class Confiteria implements Serializable {
     private Integer codigo;
 
     @Positive
-    @Column (nullable =false)
+    @Column(nullable = false)
     private float precio;
 
-    @Column (length = 100, nullable = false)
+    @Column(length = 100, nullable = false)
     private String nombre;
 
     @Column(nullable = false)
     private String urlImagen;
 
+    @ToString.Exclude
     @OneToMany(mappedBy = "confiteria")
     private List<CompraConfiteria> compraConfiterias;
 

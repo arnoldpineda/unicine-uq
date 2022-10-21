@@ -6,24 +6,23 @@ import javax.persistence.*;
 import javax.validation.constraints.Email;
 import java.io.Serializable;
 import java.util.List;
-import java.util.Map;
 
 @Entity
 @Getter
 @Setter
-@NoArgsConstructor
-@EqualsAndHashCode (onlyExplicitlyIncluded = true)
 @ToString
+@NoArgsConstructor
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class Cliente implements Serializable {
 
     @Id
     @EqualsAndHashCode.Include
     private Integer cedula;// es el mismo codigo ??
 
-    @Column (length = 100 , nullable = false)
+    @Column(length = 100, nullable = false)
     private String nombre;
 
-    @Column (nullable = false)
+    @Column(nullable = false)
     private String fotoUrl;
 
     @Email
@@ -33,7 +32,7 @@ public class Cliente implements Serializable {
     @Column(nullable = false, length = 16)
     private String password;
 
-    @Column (nullable = false)
+    @Column(nullable = false)
     private boolean estado;
 
     @ElementCollection
@@ -44,7 +43,7 @@ public class Cliente implements Serializable {
     private List<CuponCliente> cuponClientes;
 
     @ToString.Exclude
-    @OneToMany (mappedBy = "cliente")
+    @OneToMany(mappedBy = "cliente")
     private List<Compra> compras;
 
     @Builder

@@ -9,10 +9,9 @@ import javax.validation.constraints.Email;
 @MappedSuperclass
 @Getter
 @Setter
-@NoArgsConstructor
-@AllArgsConstructor
-@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @ToString
+@NoArgsConstructor
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class Persona {
 
     @Id
@@ -26,4 +25,10 @@ public class Persona {
 
     @Column(nullable = false, length = 16)
     private String password;
+
+    @Builder
+    public Persona(String correo, String password) {
+        this.correo = correo;
+        this.password = password;
+    }
 }
