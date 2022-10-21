@@ -4,30 +4,35 @@ import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
+import java.io.Serializable;
 
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 @MappedSuperclass
 @Getter
 @Setter
-@ToString
 @NoArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-public class Persona {
+@ToString
+public class Persona implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Include
     private Integer codigo;
 
+    @Column (length = 100 , nullable = false)
+    private String nombre;
+
     @Email
     @Column(length = 100, nullable = false, unique = true)
     private String correo;
 
+    @ToString.Exclude
     @Column(nullable = false, length = 16)
     private String password;
 
-    @Builder
-    public Persona(String correo, String password) {
+    public Persona(String nombre, String correo, String password) {
+        this.nombre = nombre;
         this.correo = correo;
         this.password = password;
     }

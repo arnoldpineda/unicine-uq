@@ -13,7 +13,6 @@ import java.util.List;
 @Setter
 @ToString
 @NoArgsConstructor
-@AllArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class Compra implements Serializable {
 
@@ -53,7 +52,6 @@ public class Compra implements Serializable {
     private CuponCliente cuponCliente;
 
     @Builder
-
     public Compra(MedioPago medioPago, Float valorTotal, Funcion funcion, Cliente cliente, CuponCliente cuponCliente) {
         this.medioPago = medioPago;
         this.fecha = LocalDateTime.now();
