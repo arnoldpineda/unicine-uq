@@ -20,7 +20,7 @@ public class Persona implements Serializable {
     @EqualsAndHashCode.Include
     private Integer codigo;
 
-    @Column (length = 100 , nullable = false)
+    @Column(length = 100, nullable = false)
     private String nombre;
 
     @Email

@@ -24,7 +24,7 @@ public class ClienteTest {
     @Sql("classpath:dataset.sql")
     public void registrar (){
 
-        String [] tels  = new String[] {"32445454", "4874746"};
+        String[] tels = new String[]{"32445454", "4874746"};
         Cliente cliente = new Cliente(1234, "Pepito", "pepe@email.com", "123344", "ruta", Arrays.asList(tels));
 
         Cliente guardado = clienteRepo.save(cliente);

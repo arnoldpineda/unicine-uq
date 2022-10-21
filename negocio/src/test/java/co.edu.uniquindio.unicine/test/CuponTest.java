@@ -22,16 +22,16 @@ public class CuponTest {
 
     @Test
     @Sql("classpath:dataset.sql")
-    public void registrar (){
+    public void registrar() {
         Cupon cupon = new Cupon("cupon", 0.15f, "registro", LocalDateTime.now());
 
         Cupon guardado = cuponRepo.save(cupon);
         Assertions.assertNotNull(guardado);
-     }
+    }
 
     @Test
     @Sql("classpath:dataset.sql")
-    public void eliminar(){
+    public void eliminar() {
         Cupon buscado = cuponRepo.findById(1).orElse(null);
         cuponRepo.delete(buscado);
         Assertions.assertNull(cuponRepo.findById(1).orElse(null));
@@ -39,7 +39,7 @@ public class CuponTest {
 
     @Test
     @Sql("classpath:dataset.sql")
-    public void actualizar(){
+    public void actualizar() {
         Cupon guardado = cuponRepo.findById(1).orElse(null);
         guardado.setCriterio("Otro");
 
@@ -49,14 +49,14 @@ public class CuponTest {
 
     @Test
     @Sql("classpath:dataset.sql")
-    public void obtener(){
+    public void obtener() {
         Optional<Cupon> buscado = cuponRepo.findById(4);
         Assertions.assertNotNull(buscado.orElse(null));
     }
 
     @Test
     @Sql("classpath:dataset.sql")
-    public void listar(){
+    public void listar() {
         List<Cupon> lista = cuponRepo.findAll();
         lista.forEach(System.out::println);
     }

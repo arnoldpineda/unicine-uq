@@ -31,11 +31,11 @@ public class CuponClienteTest {
 
     @Test
     @Sql("classpath:dataset.sql")
-    public void registrar(){
+    public void registrar() {
 
         Cupon cupon = new Cupon("cupon", 0.15f, "registro", LocalDateTime.now());
         Cupon cuponGuardado = cuponRepo.save(cupon);
-        String [] tels  = new String[] {"32445454", "4874746"};
+        String[] tels = new String[]{"32445454", "4874746"};
         Cliente cliente = new Cliente(1234, "Pepito", "pepe@email.com", "123344", "ruta", Arrays.asList(tels));
         Cliente clienteGuardado = clienteRepo.save(cliente);
 
@@ -55,7 +55,7 @@ public class CuponClienteTest {
 
     @Test
     @Sql("classpath:dataset.sql")
-    public void actualizar(){
+    public void actualizar() {
         CuponCliente guardado = cuponClienteRepo.findById(4).orElse(null);
         guardado.setEstado(true);
 
@@ -65,14 +65,14 @@ public class CuponClienteTest {
 
     @Test
     @Sql("classpath:dataset.sql")
-    public void obtener(){
+    public void obtener() {
         Optional<CuponCliente> buscado = cuponClienteRepo.findById(4);
         Assertions.assertNotNull(buscado.orElse(null));
     }
 
     @Test
     @Sql("classpath:dataset.sql")
-    public void listar(){
+    public void listar() {
         List<CuponCliente> lista = cuponClienteRepo.findAll();
         lista.forEach(System.out::println);
     }

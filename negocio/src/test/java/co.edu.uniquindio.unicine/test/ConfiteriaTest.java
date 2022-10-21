@@ -23,7 +23,7 @@ public class ConfiteriaTest {
 
     @Test
     @Sql("classpath:dataset.sql")
-    public void registrar (){
+    public void registrar() {
 
         Confiteria confiteria = new Confiteria(10000, "Crispetas", "rutaImagen");
 
@@ -33,7 +33,7 @@ public class ConfiteriaTest {
 
     @Test
     @Sql("classpath:dataset.sql")
-    public void eliminar(){
+    public void eliminar() {
         Confiteria buscada = confiteriaRepo.findById(1).orElse(null);
         confiteriaRepo.delete(buscada);
         Assertions.assertNull(confiteriaRepo.findById(1).orElse(null));

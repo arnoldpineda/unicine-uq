@@ -20,7 +20,7 @@ public class ClienteServicioTest {
 
     @Test
     @Sql("classpath:dataset.sql")
-    public void registrarClienteTest(){
+    public void registrarClienteTest() {
 
         Cliente cliente = Cliente.builder().cedula(1234).nombre("Juanito").password("1234").correo("juanito@gmail.com").urlFoto("http").build();
 
@@ -35,7 +35,7 @@ public class ClienteServicioTest {
 
     @Test
     @Sql("classpath:dataset.sql")
-    public void actualizarClienteTest(){
+    public void actualizarClienteTest() {
 
         try {
             Cliente cliente = clienteServicio.obtenerCliente(1);
@@ -50,7 +50,7 @@ public class ClienteServicioTest {
 
     @Test
     @Sql("classpath:dataset.sql")
-    public void eliminarClienteTest(){
+    public void eliminarClienteTest() {
 
         try {
             clienteServicio.eliminarCliente(1); //elimina el cliente, si no lo encuentra arroja la excepcion
@@ -58,16 +58,16 @@ public class ClienteServicioTest {
             throw new RuntimeException(e);
         }
 
-        try{
+        try {
             clienteServicio.obtenerCliente(1); //busca el cliente arroja la excepcion por que no lo encuentra entonces es null
-        }catch (Exception e){
+        } catch (Exception e) {
             Assertions.assertTrue(true); //como no lo encuentra arroja error y el assert quiere decir que si lo borro, entonces es true
         }
     }
 
     @Test
     @Sql("classpath:dataset.sql")
-    public void listarClientesTest(){
+    public void listarClientesTest() {
 
         List<Cliente> lista = clienteServicio.listarClientes();
         lista.forEach(System.out::println);
