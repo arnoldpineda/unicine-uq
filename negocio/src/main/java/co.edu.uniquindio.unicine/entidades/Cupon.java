@@ -5,7 +5,6 @@ import lombok.*;
 import javax.persistence.*;
 import javax.validation.constraints.Positive;
 import java.io.Serializable;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -18,18 +17,18 @@ import java.util.List;
 public class Cupon implements Serializable {
 
     @Id
-    @GeneratedValue (strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Include
     private Integer codigo;
 
-    @Column (length = 100 , nullable = false)
+    @Column(length = 100, nullable = false)
     private String descripcion;
 
     @Positive
     @Column(nullable = false)
     private float descuento;
 
-    @Column (length = 100 , nullable = false)
+    @Column(length = 100, nullable = false)
     private String criterio;
 
     @Column(nullable = false)
