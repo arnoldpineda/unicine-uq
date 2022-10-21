@@ -5,15 +5,13 @@ import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.Positive;
-import javax.validation.constraints.PositiveOrZero;
 
 @Entity
 @Getter
 @Setter
-@NoArgsConstructor
-@AllArgsConstructor
-@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @ToString
+@NoArgsConstructor
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class Entrada {
 
     @Id
@@ -34,4 +32,11 @@ public class Entrada {
     @JoinColumn(nullable = false)
     private Compra compra;
 
+    @Builder
+    public Entrada(Float precio, Integer fila, Integer columna, Compra compra) {
+        this.precio = precio;
+        this.fila = fila;
+        this.columna = columna;
+        this.compra = compra;
+    }
 }

@@ -4,17 +4,15 @@ import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.Positive;
-import javax.validation.constraints.PositiveOrZero;
 import java.io.Serializable;
 import java.util.List;
 
 @Entity
 @Getter
 @Setter
-@NoArgsConstructor
-@AllArgsConstructor
-@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @ToString
+@NoArgsConstructor
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class DistribuccionSillas implements Serializable {
 
     @Id
@@ -33,6 +31,15 @@ public class DistribuccionSillas implements Serializable {
     @Positive
     private Integer columnas;
 
+    @ToString.Exclude
     @OneToMany(mappedBy = "distribuccionSillas")
     private List<Sala> salas;
+
+    @Builder
+    public DistribuccionSillas(String esquema, Integer totalSillas, Integer filas, Integer columnas) {
+        this.esquema = esquema;
+        this.totalSillas = totalSillas;
+        this.filas = filas;
+        this.columnas = columnas;
+    }
 }

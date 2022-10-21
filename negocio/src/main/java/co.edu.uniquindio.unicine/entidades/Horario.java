@@ -12,10 +12,9 @@ import java.util.List;
 @Entity
 @Getter
 @Setter
-@NoArgsConstructor
-@AllArgsConstructor
-@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @ToString
+@NoArgsConstructor
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class Horario implements Serializable {
 
     @Id
@@ -27,12 +26,20 @@ public class Horario implements Serializable {
     private Integer dia;
 
     private LocalTime hora;
-    
+
     private LocalDate fechaInicio;
 
     private LocalDate fechaFin;
 
+    @ToString.Exclude
     @OneToMany(mappedBy = "horario")
     private List<Funcion> funciones;
 
+    @Builder
+    public Horario(Integer dia, LocalTime hora, LocalDate fechaInicio, LocalDate fechaFin) {
+        this.dia = dia;
+        this.hora = hora;
+        this.fechaInicio = fechaInicio;
+        this.fechaFin = fechaFin;
+    }
 }

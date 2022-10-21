@@ -9,10 +9,9 @@ import java.util.List;
 @Entity
 @Getter
 @Setter
-@NoArgsConstructor
-@AllArgsConstructor
-@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @ToString
+@NoArgsConstructor
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class Teatro implements Serializable {
 
     @Id
@@ -37,7 +36,16 @@ public class Teatro implements Serializable {
     @JoinColumn(nullable = false)
     private AdministradorTeatro administradorTeatro;
 
+    @ToString.Exclude
     @OneToMany(mappedBy = "teatro")
     private List<Sala> salas;
 
+    @Builder
+    public Teatro(String nombre, String direccion, String telefono, Ciudad ciudad, AdministradorTeatro administradorTeatro) {
+        this.nombre = nombre;
+        this.direccion = direccion;
+        this.telefono = telefono;
+        this.ciudad = ciudad;
+        this.administradorTeatro = administradorTeatro;
+    }
 }

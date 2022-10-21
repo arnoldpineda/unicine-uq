@@ -12,9 +12,9 @@ import java.util.List;
 @Entity
 @Getter
 @Setter
+@ToString
 @NoArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-@ToString
 public class Cupon implements Serializable {
 
     @Id
@@ -35,6 +35,7 @@ public class Cupon implements Serializable {
     @Column(nullable = false)
     private LocalDateTime vencimiento;
 
+    @ToString.Exclude
     @OneToMany(mappedBy = "cupon")
     private List<CuponCliente> cuponClientes;
 

@@ -9,10 +9,9 @@ import java.util.List;
 @Entity
 @Getter
 @Setter
-@NoArgsConstructor
-@AllArgsConstructor
-@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @ToString
+@NoArgsConstructor
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class Ciudad implements Serializable {
 
     @Id
@@ -23,7 +22,12 @@ public class Ciudad implements Serializable {
     @Column(length = 100, nullable = false)
     private String nombre;
 
+    @ToString.Exclude
     @OneToMany(mappedBy = "ciudad")
     private List<Teatro> teatros;
 
+    @Builder
+    public Ciudad(String nombre) {
+        this.nombre = nombre;
+    }
 }
