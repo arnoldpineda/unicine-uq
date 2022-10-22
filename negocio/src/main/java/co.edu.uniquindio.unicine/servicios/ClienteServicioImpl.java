@@ -44,7 +44,7 @@ public class ClienteServicioImpl implements ClienteServicio {
         boolean correoExiste = correoEsRepetido(cliente.getCorreo());
 
         if (correoExiste){
-            throw new Exception("El correo ya esta en uno");
+            throw new Exception("El correo ya existe");
         }
         return clienteRepo.save(cliente);
     }
