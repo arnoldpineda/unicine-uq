@@ -24,11 +24,11 @@ public class Horario implements Serializable {
 
     @PositiveOrZero
     private Integer dia;
-
+    @Column(nullable = false)
     private LocalTime hora;
-
+    @Column(nullable = false)
     private LocalDate fechaInicio;
-
+    @Column(nullable = false)
     private LocalDate fechaFin;
 
     @ToString.Exclude
