@@ -18,6 +18,7 @@ public interface PeliculaRepo extends JpaRepository<Pelicula, Integer> {
     @Query("select new co.edu.uniquindio.unicine.dto.HorarioSalaDTO(f.horario, f.sala) from Pelicula p join p.funciones f where p.codigo = :codigoPelicula and f.sala.teatro.codigo = :codigoTeatro")
     List<HorarioSalaDTO> listarHorarios(Integer codigoPelicula, Integer codigoTeatro);
 
+    //Tocó comentarlo porqye causa error
     /*@Query("select p from Pelicula p where :generoPelicula member of p.genero order by p.nombre asc")
     List<Pelicula> ListarPeliculas(Genero generoPelicula);*/
 }
