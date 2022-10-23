@@ -18,14 +18,14 @@ public class Cliente extends Persona implements Serializable {
     private String urlFoto;
 
     @Column(nullable = false)
-    private boolean estado;
+    private Boolean estado;
 
     @ElementCollection
     private List<String> telefonos;
 
     @ToString.Exclude   //todo lo que sea one to many se exclude del ToString
     @OneToMany(mappedBy = "cliente")
-    private List<CuponCliente> cuponClientes;
+    private List<CuponCliente> cupones;
 
     @ToString.Exclude
     @OneToMany(mappedBy = "cliente")

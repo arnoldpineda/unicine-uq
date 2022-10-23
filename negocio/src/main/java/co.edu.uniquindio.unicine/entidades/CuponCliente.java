@@ -30,7 +30,7 @@ public class CuponCliente implements Serializable {
     private Cliente cliente;
 
     @ToString.Exclude
-    @OneToOne(mappedBy = "cuponCliente")
+    @OneToOne(mappedBy = "cupon")
     private Compra compra;
 
     @Builder

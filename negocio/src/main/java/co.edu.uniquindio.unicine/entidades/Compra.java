@@ -42,14 +42,14 @@ public class Compra implements Serializable {
 
     @ToString.Exclude
     @OneToMany(mappedBy = "compra")
-    private List<CompraConfiteria> compraConfiterias;
+    private List<CompraConfiteria> confiteria;
 
     @ManyToOne
     @JoinColumn(nullable = false)
     private Cliente cliente;
 
     @OneToOne
-    private CuponCliente cuponCliente;
+    private CuponCliente cupon;
 
     @Builder
     public Compra(MedioPago medioPago, Float valorTotal, Funcion funcion, Cliente cliente, CuponCliente cuponCliente) {
@@ -58,6 +58,6 @@ public class Compra implements Serializable {
         this.valorTotal = valorTotal;
         this.funcion = funcion;
         this.cliente = cliente;
-        this.cuponCliente = cuponCliente;
+        this.cupon = cuponCliente;
     }
 }
