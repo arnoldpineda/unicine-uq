@@ -32,7 +32,7 @@ public class Confiteria implements Serializable {
 
     @ToString.Exclude
     @OneToMany(mappedBy = "confiteria")
-    private List<CompraConfiteria> compraConfiterias;
+    private List<CompraConfiteria> confiteria;
 
     @Builder
     public Confiteria(float precio, String nombre, String urlImagen) {

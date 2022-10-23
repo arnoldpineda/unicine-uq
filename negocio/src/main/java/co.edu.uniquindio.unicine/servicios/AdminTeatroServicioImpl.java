@@ -14,7 +14,6 @@ import co.edu.uniquindio.unicine.repo.SalaRepo;
 import co.edu.uniquindio.unicine.repo.TeatroRepo;
 import org.springframework.stereotype.Service;
 
-import javax.persistence.criteria.CriteriaBuilder;
 import java.util.List;
 import java.util.Optional;
 

@@ -1,10 +1,13 @@
 package co.edu.uniquindio.unicine.repo;
 
 import co.edu.uniquindio.unicine.entidades.Cliente;
+import co.edu.uniquindio.unicine.entidades.Compra;
+import co.edu.uniquindio.unicine.entidades.Cupon;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -26,5 +29,15 @@ public interface ClienteRepo extends JpaRepository<Cliente, Integer> {
     //Comprobar autenticaión por inferencia
     Cliente findByCorreoAndPassword(String correo, String password);
 
+    @Query("select c from Cliente c where c.estado = :estado")
+    List<Cliente> obtenerPorEstado(boolean estado);
 
+    @Query("select comp from Cliente  cli, in (cli.compras) comp where cli.correo = :correo")
+    List<Compra> obtenerCompras(String correo);
+
+    @Query("select cup from Cliente  cli join cli.cupones cup where cli.correo = :correo")
+    List<Cupon> obtenerCupones(String correo);
+
+    @Query("select cli.nombre, cli.correo, comp from Cliente cli left join cli.compras comp")
+    List<Object[]> obtenerComprasTodos();
 }
