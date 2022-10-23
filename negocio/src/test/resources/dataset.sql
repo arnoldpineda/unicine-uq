@@ -53,11 +53,11 @@ insert into pelicula values (3, 1, "TERROR", "Hallowen", "reparto", "sinopsis", 
 insert into pelicula values (4, 0, "ANIMADA", "Super mascotas", "reparto", "sinopsis", "imagen", "trailer");
 insert into pelicula values (5, 0, "ACCION", "Pantera negra", "reparto", "sinopsis", "imagen", "trailer");
 
-insert into horario values (1, 1, "2022-1-30", "2022-10-30", "13:00");
-insert into horario values (2, 1, "2022-1-30", "2022-10-30", "15:00");
-insert into horario values (3, 2, "2022-1-30", "2022-10-30", "17:00");
-insert into horario values (4, 4, "2022-1-30", "2022-10-30", "19:00");
-insert into horario values (5, 3, "2022-1-30", "2022-10-30", "21:00");
+insert into horario values (1, 1, "2022-11-30", "2022-10-30", "13:00");
+insert into horario values (2, 1, "2022-11-30", "2022-10-30", "15:00");
+insert into horario values (3, 2, "2022-11-30", "2022-10-30", "17:00");
+insert into horario values (4, 4, "2022-11-30", "2022-10-30", "19:00");
+insert into horario values (5, 3, "2022-11-30", "2022-10-30", "21:00");
 
 insert into distribuccion_sillas values (1, 5, "esquema", 10, 50);
 insert into distribuccion_sillas values (2, 5, "esquema", 15, 75);

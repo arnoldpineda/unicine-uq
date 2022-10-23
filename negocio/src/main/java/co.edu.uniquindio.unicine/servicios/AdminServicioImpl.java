@@ -12,7 +12,6 @@ import co.edu.uniquindio.unicine.repo.CiudadRepo;
 import co.edu.uniquindio.unicine.repo.ConfiteriaRepo;
 import co.edu.uniquindio.unicine.repo.CuponRepo;
 import co.edu.uniquindio.unicine.repo.PeliculaRepo;
-import net.bytebuddy.implementation.bytecode.Throw;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.stereotype.Service;
 
@@ -239,7 +238,7 @@ public class AdminServicioImpl implements AdminServicio{
         Optional<Ciudad> guardado = ciudadRepo.findById(codigo);
 
         if (guardado.isEmpty()){
-            throw new Exception("La ciudad no existe");
+            throw new Exception("No hay una ciudad con ese codigo");
         }
         return guardado.get();
     }
