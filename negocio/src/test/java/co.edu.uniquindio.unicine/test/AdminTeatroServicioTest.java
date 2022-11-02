@@ -1,10 +1,6 @@
 package co.edu.uniquindio.unicine.test;
 
-import co.edu.uniquindio.unicine.entidades.AdministradorTeatro;
-import co.edu.uniquindio.unicine.entidades.Ciudad;
-import co.edu.uniquindio.unicine.entidades.Funcion;
-import co.edu.uniquindio.unicine.entidades.Horario;
-import co.edu.uniquindio.unicine.entidades.Teatro;
+import co.edu.uniquindio.unicine.entidades.*;
 import co.edu.uniquindio.unicine.repo.CiudadRepo;
 import co.edu.uniquindio.unicine.servicios.AdminTeatroServicio;
 import org.junit.jupiter.api.Assertions;
@@ -174,4 +170,77 @@ public class AdminTeatroServicioTest {
         }
     }
 
+    @Test
+    @Sql("classpath:dataset.sql")
+    public void eliminarFuncionTest() {
+
+        try {
+            adminTeatroServicio.eliminarFuncion(1);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
+        try {
+            adminTeatroServicio.obtenerFuncion(1);
+        } catch (Exception e) {
+            Assertions.assertTrue(true);
+        }
+    }
+
+    @Test
+    @Sql("classpath:dataset.sql")
+    public void listarFuncionTest() {
+        List<Funcion> lista = adminTeatroServicio.listarFunciones();
+        lista.forEach(System.out::println);
+    }
+
+    @Test
+    @Sql("classpath:dataset.sql")
+    public void obtenerSalaTest() {
+
+        try {
+            Sala sala = adminTeatroServicio.obtenerSala(1);
+            Assertions.assertNotNull(sala);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Test
+    @Sql("classpath:dataset.sql")
+    public void actualizarSalaTest() {
+
+        try {
+            Sala sala = adminTeatroServicio.obtenerSala(1);
+            sala.setNombre("Nuevo nombre");
+            Sala nuevo = adminTeatroServicio.actualizarSala(sala);
+            Assertions.assertEquals("Nuevo nombre", nuevo.getNombre());
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Test
+    @Sql("classpath:dataset.sql")
+    public void eliminarSalaTest() {
+
+        try {
+            adminTeatroServicio.eliminarSala(1);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
+        try {
+            adminTeatroServicio.obtenerSala(1);
+        } catch (Exception e) {
+            Assertions.assertTrue(true);
+        }
+    }
+
+    @Test
+    @Sql("classpath:dataset.sql")
+    public void listarSalaTest() {
+        List<Sala> lista = adminTeatroServicio.listarSalas();
+        lista.forEach(System.out::println);
+    }
 }

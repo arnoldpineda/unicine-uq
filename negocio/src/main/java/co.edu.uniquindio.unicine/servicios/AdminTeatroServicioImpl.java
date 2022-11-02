@@ -208,22 +208,37 @@ public class AdminTeatroServicioImpl implements AdminTeatroServicio {
 
     @Override
     public Sala obtenerSala(Integer codigo) throws Exception {
-        return null;
+        Optional<Sala> guardado = salaRepo.findById(codigo);
+
+        if (guardado.isEmpty()) {
+            throw new Exception("La sala buscada no existe");
+        }
+        return guardado.get();
     }
 
     @Override
     public Sala actualizarSala(Sala sala) throws Exception {
-        return null;
+        Optional<Sala> guardado = salaRepo.findById(sala.getCodigo());
+
+        if (guardado.isEmpty()) {
+            throw new Exception("La sala buscada no existe");
+        }
+        return salaRepo.save(sala);
     }
 
     @Override
     public void eliminarSala(Integer codigo) throws Exception {
+        Optional<Sala> guardado = salaRepo.findById(codigo);
 
+        if (guardado.isEmpty()) {
+            throw new Exception("La sala no existe");
+        }
+        salaRepo.delete(guardado.get());
     }
 
     @Override
     public List<Sala> listarSalas() {
-        return null;
+        return salaRepo.findAll();
     }
 
 
