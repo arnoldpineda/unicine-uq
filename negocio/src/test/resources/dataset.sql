@@ -21,7 +21,7 @@ insert into cupon values (3, "Registro", "Cupon", 15, "2022-10-30T15:50:05.609")
 insert into cupon values (4, "Cumpleaños", "Cupon", 05, "2022-10-30T15:50:05.609");
 insert into cupon values (5, "Registro", "Cupon", 10, "2022-10-30T15:50:05.609");
 
-insert into cupon_cliente values (1, 1, 1, 1);
+insert into cupon_cliente values (1, 1, 2, 1);
 insert into cupon_cliente values (2, 0, 1, 2);
 insert into cupon_cliente values (3, 1, 2, 3);
 insert into cupon_cliente values (4, 0, 3, 4);
@@ -77,11 +77,11 @@ insert into funcion values (3, 5000, 1, 3, 3);
 insert into funcion values (4, 5000, 4, 4, 4);
 insert into funcion values (5, 5000, 1, 5, 5);
 
-insert into compra values (1, "2022-10-30", "VISA", 0, 1, null, 1);
-insert into compra values (2, "2022-11-30", "DAVIPLATA", 0, 1, null, 1);
-insert into compra values (3, "2022-10-30", "NEQUI", 0, 1, null, 2);
-insert into compra values (4, "2022-11-30", "MASTERCARD", 0, 1, null, 3);
-insert into compra values (5, "2022-10-30", "VISA", 0, 1, 3, 1);
+insert into compra values (1, "2022-10-30", "VISA", 0, 1, null, 1, 1);
+insert into compra values (2, "2022-11-30", "DAVIPLATA", 0, 1, null, 1, 1);
+insert into compra values (3, "2022-10-30", "NEQUI", 0, 1, null, 2, 1);
+insert into compra values (4, "2022-11-30", "MASTERCARD", 0, 1, null, 3, 1);
+insert into compra values (5, "2022-10-30", "VISA", 0, 1, 3, 1, 2);
 
 insert into compra_confiteria values (1, 0, 2, 1, 5);
 insert into compra_confiteria values (2, 0, 1, 1, 3);

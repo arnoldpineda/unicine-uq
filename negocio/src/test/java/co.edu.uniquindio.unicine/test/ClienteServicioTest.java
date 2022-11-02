@@ -1,7 +1,11 @@
 package co.edu.uniquindio.unicine.test;
 
 import co.edu.uniquindio.unicine.entidades.Cliente;
+import co.edu.uniquindio.unicine.entidades.Cupon;
+import co.edu.uniquindio.unicine.entidades.CuponCliente;
+import co.edu.uniquindio.unicine.entidades.Pelicula;
 import co.edu.uniquindio.unicine.servicios.ClienteServicio;
+import co.edu.uniquindio.unicine.servicios.EmailServicio;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +21,9 @@ public class ClienteServicioTest {
 
     @Autowired
     private ClienteServicio clienteServicio;
+
+    @Autowired
+    private EmailServicio emailServicio;
 
     @Test
     @Sql("classpath:dataset.sql")
@@ -71,5 +78,33 @@ public class ClienteServicioTest {
 
         List<Cliente> lista = clienteServicio.listarClientes();
         lista.forEach(System.out::println);
+    }
+
+    @Test
+    @Sql("classpath:dataset.sql")
+    public void obtenerPeliculaTest(){
+
+        try {
+            Pelicula pelicula = clienteServicio.obtenerPelicula(1);
+            Assertions.assertNotNull(pelicula);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Test//
+    @Sql("classpath:dataset.sql")
+    public void obtenerCuponTest(){
+
+        try {
+            CuponCliente cupon = clienteServicio.obtenerCupon(2);
+            Assertions.assertNotNull(cupon);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+    @Test
+    public void enviarCorreotest(){
+        emailServicio.enviarEmail("prueba de envio", "Este es un mensaje", "jmllantenm@uqvirtual.edu.co" );
     }
 }
