@@ -4,6 +4,7 @@ dependencies {
     runtimeOnly 'mysql:mysql-connector-java'
 
     implementation 'org.springframework.boot:spring-boot-starter-mail'
+    implementation 'com.cloudinary:cloudinary-http44:1.33.0'
 
 }
 
