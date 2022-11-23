@@ -3,6 +3,7 @@ package co.edu.uniquindio.unicine.entidades;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.List;
 
@@ -19,9 +20,11 @@ public class Teatro implements Serializable {
     @EqualsAndHashCode.Include
     private Integer codigo;
 
+    @NotNull
     @Column(length = 100, nullable = false)
     private String nombre;
 
+    @NotNull
     @Column(nullable = false)
     private String direccion;
 

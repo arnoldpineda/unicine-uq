@@ -25,7 +25,7 @@ public class ClienteTest {
     public void registrar (){
 
         String[] tels = new String[]{"32445454", "4874746"};
-        Cliente cliente = new Cliente(1234, "Pepito", "pepe@email.com", "123344", "ruta", Arrays.asList(tels));
+        Cliente cliente = new Cliente(1234, "Pepito", "pepito@email.com", "123344", "ruta", Arrays.asList(tels));
 
         Cliente guardado = clienteRepo.save(cliente);
         //Assertions.assertEquals("Pepito", guardado.getNombre()); // compara el valor esperado con el guardado

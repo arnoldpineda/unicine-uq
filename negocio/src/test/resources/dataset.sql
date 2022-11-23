@@ -47,11 +47,17 @@ insert into teatro values (3, "CC Calima loc 8", "Calima", "7415632", 3, 3);
 insert into teatro values (4, "CC Portal del Quindío loc 1", "Portal del Quindío", "7415632", 2, 4);
 insert into teatro values (5, "Cra 15 No. 12-26 local 3", "Calle Real", "7415632", 1, 5);
 
-insert into pelicula values (1, 1, "CIENCIA_FICCION", "El señor de los anillos", "reparto", "sinopsis", "imagen", "trailer");
-insert into pelicula values (2, 1, "COMEDIA", "Usted no sabe quien soy yo", "reparto", "sinopsis", "imagen", "trailer");
-insert into pelicula values (3, 1, "TERROR", "Hallowen", "reparto", "sinopsis", "imagen", "trailer");
-insert into pelicula values (4, 0, "ANIMADA", "Super mascotas", "reparto", "sinopsis", "imagen", "trailer");
-insert into pelicula values (5, 0, "ACCION", "Pantera negra", "reparto", "sinopsis", "imagen", "trailer");
+insert into pelicula values (1, "CARTELERA", "El señor de los anillos", "reparto", "sinopsis", "imagen", "trailer");
+insert into pelicula values (2, "CARTELERA", "Usted no sabe quien soy yo", "reparto", "sinopsis", "imagen", "trailer");
+insert into pelicula values (3, "CARTELERA", "Hallowen", "reparto", "sinopsis", "imagen", "trailer");
+insert into pelicula values (4, "CARTELERA","Super mascotas", "reparto", "sinopsis", "imagen", "trailer");
+insert into pelicula values (5, "PREVENTA", "Pantera negra", "reparto", "sinopsis", "imagen", "trailer");
+
+insert into pelicula_generos values (1, "ANIMADA");
+insert into pelicula_generos values (2, "DRAMA");
+insert into pelicula_generos values (3, "SUSPENSO");
+insert into pelicula_generos values (4, "COMEDIA");
+insert into pelicula_generos values (5, "CIENCIA_FICCION");
 
 insert into horario values (1, 1, "2022-11-30", "2022-10-30", "13:00");
 insert into horario values (2, 1, "2022-11-30", "2022-10-30", "15:00");
@@ -77,20 +83,20 @@ insert into funcion values (3, 5000, 1, 3, 3);
 insert into funcion values (4, 5000, 4, 4, 4);
 insert into funcion values (5, 5000, 1, 5, 5);
 
-insert into compra values (1, "2022-10-30", "VISA", 0, 1, null, 1, 1);
-insert into compra values (2, "2022-11-30", "DAVIPLATA", 0, 1, null, 1, 1);
-insert into compra values (3, "2022-10-30", "NEQUI", 0, 1, null, 2, 1);
-insert into compra values (4, "2022-11-30", "MASTERCARD", 0, 1, null, 3, 1);
-insert into compra values (5, "2022-10-30", "VISA", 0, 1, 3, 1, 2);
+insert into compra values (1, "2022-10-30", "VISA", 0, 1, null, 1);
+insert into compra values (2, "2022-11-30", "DAVIPLATA", 0, 1, null, 1);
+insert into compra values (3, "2022-10-30", "NEQUI", 0, 1, null, 1);
+insert into compra values (4, "2022-11-30", "MASTERCARD", 0, 1, null, 1);
+insert into compra values (5, "2022-10-30", "VISA", 0, 1, 3, 1);
 
 insert into compra_confiteria values (1, 0, 2, 1, 5);
-insert into compra_confiteria values (2, 0, 1, 1, 3);
+insert into compra_confiteria values (2, 0, 1, 5, 3);
 insert into compra_confiteria values (3, 0, 1, 2, 1);
 insert into compra_confiteria values (4, 0, 2, 3, 2);
 insert into compra_confiteria values (5, 0, 3, 4, 1);
 
 insert into entrada values (1, 1, 1, 5000, 1);
-insert into entrada values (2, 2, 1, 5000, 1);
-insert into entrada values (3, 5, 3, 5000, 2);
-insert into entrada values (4, 2, 3, 5000, 3);
-insert into entrada values (5, 1, 4, 8000, 4);
+insert into entrada values (2, 2, 1, 5000, 5);
+insert into entrada values (3, 3, 1, 5000, 2);
+insert into entrada values (4, 4, 1, 5000, 3);
+insert into entrada values (5, 5, 1, 8000, 4);

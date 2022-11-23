@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <h:outputStylesheet name="bootstrap.min.css" library="css" />
+    <h:outputScript name="bootstrap.bundle.min.js" library="js" />
+    <h:outputStylesheet name="styles.css" library="css" />
+    <title>Página de Inicio</title>
+</h:head>
+
+<h:body>
+    <div id="contenido">
+
+        <div id = "barra_nav">
+
+            <header>
+                <div class="container">
+                    <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-4 mb-4 border-bottom">
+                        <a href="/" class="d-flex align-items-center col-md-3 mb-4 mb-md-0 text-dark text-decoration-none">
+                            <h:graphicImage library="img" name="icono.jpg" styleClass="img-icon me-3"/>
+                            <span class="fs-2">UNICINE</span>
+                        </a>
+
+                        <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+                            <li><a href="/adminTeatro/gestionar_teatro.xhtml" class="nav-link px-4 link-secondary">TEATROS</a></li>
+                            <li><a href="/admin/crear_pelicula.xhtml" class="nav-link px-4 link-dark">PELICULAS</a></li>
+                            <li><a href="/admin/gestionar_admin_teatro.xhtml" class="nav-link px-4 link-dark">ADMINISTRADORES</a></li>
+                        </ul>
+
+                        <div class="col-md-3 text-end">
+                            <button type="button" class="btn btn-outline-primary me-2">INICIAR SESION</button>
+                            <p:linkButton value="Registrarse" href="/registro.xhtml" />
+                        </div>
+                    </div>
+                </div>
+            </header>
+        </div>
+
+
+
+        <ui:insert name="content"></ui:insert>
+
+    </div>
+
+    <div class="container">
+        <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+            <div class="col-md-4 d-flex align-items-center">
+                <a href="/" class="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1">
+                    <h:graphicImage library="img" name="icono.jpg" styleClass="img-icon me-3"/>
+                </a>
+                <span class="mb-3 mb-md-0 text-muted">&copy; 2022 Company, Inc</span>
+            </div>
+
+            <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
+                <li class="ms-3"><a class="text-muted" href="#"> <i class="pi pi-twitter" /> </a></li>
+                <li class="ms-3"><a class="text-muted" href="#"> <i class="pi pi-instagram" /> </a></li>
+                <li class="ms-3"><a class="text-muted" href="#"> <i class="pi pi-facebook" /> </a></li>
+            </ul>
+        </footer>
+    </div>
+
+
+</h:body>
+</html>

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<ui:composition template="/WEB-INF/templateAdm.xhtml">
+    <ui:define name="content">
+
+
+        <div jsf:id = "gestionar_administradores" class="container">
+            <h:form id="crud_admin">
+                <p:toolbar>
+                    <p:toolbarGroup>
+                        <p:commandButton value="Agregar" icon="pi pi-plus" styleClass="ui-button-success" style="margin-right: .5rem" action="#{gestionarAdminTeatroBean.crearAdminTeatroDialogo()}" update="dialogo_crear" oncomplete="PF('crear_administrador').show()"/>
+                        <p:commandButton id="btn_borrar" value="#{gestionarAdminTeatroBean.mensajeBorrar}" icon="pi pi-trash" disabled="#{gestionarAdminTeatroBean.administradoresTeatroSeleccionados.size()==0}" styleClass="ui-button-danger" style="margin-right: .5rem" action="#{gestionarAdminTeatroBean.eliminarAdminTeatro()}" update="crud_admin:lista,@this"/>
+                    </p:toolbarGroup>
+                </p:toolbar>
+
+                <p:panel header="Lista de administradores">
+                    <p:dataTable id="lista" value="#{gestionarAdminTeatroBean.administradoresTeatro}" var="administrador" paginator="true" rows="5"
+                                 rowKey="#{administrador.codigo}"
+                                 paginatorPosition="bottom" rowSelectMode="add" reflow="true"
+                                 selection="#{gestionarAdminTeatroBean.administradoresTeatroSeleccionados}">
+
+                        <p:ajax event="rowSelect" update="crud_admin:btn_borrar" />
+                        <p:ajax event="rowUnselect" update="crud_admin:btn_borrar" />
+                        <p:ajax event="rowSelectCheckbox" update="crud_admin:btn_borrar" />
+                        <p:ajax event="rowUnselectCheckbox" update="crud_admin:btn_borrar" />
+                        <p:ajax event="toggleSelect" update="crud_admin:btn_borrar" />
+
+                        <p:column selectionMode="multiple" exportable="false"/>
+
+                        <p:column headerText="Codigo">
+                            <h:outputText value="#{administrador.codigo}"/>
+                        </p:column>
+
+                        <p:column headerText="Nombre">
+                            <h:outputText value="#{administrador.nombre}"/>
+                        </p:column>
+
+                        <p:column headerText="Correo">
+                            <h:outputText value="#{administrador.correo}"/>
+                        </p:column>
+
+                        <p:column headerText="Editar">
+                            <p:commandButton styleClass="edit-button rounded-button ui-button-success" icon="pi pi-pencil" action="#{gestionarAdminTeatroBean.seleccionarAdminTeatro(administradores)}" oncomplete="PF('crear_administrador').show()" update="dialogo_crear"/>
+                        </p:column>
+
+                    </p:dataTable>
+                </p:panel>
+            </h:form>
+
+
+            <p:dialog id="dialogo_crear" widgetVar="crear_administrador" modal="true" header="#{gestionarAdminTeatroBean.mensajeCrear}" showEffect="fade">
+
+                <h:form>
+                    <h:panelGrid columns="3" cellpadding="5">
+
+                        <p:outputLabel for="nombre_adminTeatro" value="Nombre:" />
+                        <p:inputText id="nombre_adminTeatro" value="#{gestionarAdminTeatroBean.administradorTeatro.nombre}" required="true" />
+                        <p:message for ="nombre_adminTeatro" />
+
+                        <p:outputLabel for="correo_adminTeatro" value="Correo:" />
+                        <p:inputText id="correo_adminTeatro" value="#{gestionarAdminTeatroBean.administradorTeatro.correo}" required="true" />
+                        <p:message for ="correo_adminTeatro" />
+
+                        <p:outputLabel for="password_admin" value="Contraseña:" />
+                        <p:password id="password_admin" value="#{gestionarAdminTeatroBean.administradorTeatro.password}" required="true" feedback="true" toggleMask="true" redisplay="true"/>
+                        <p:message for ="password_admin" />
+
+                    </h:panelGrid>
+                    <p:commandButton value="#{gestionarAdminTeatroBean.mensajeCrear}" action="#{gestionarAdminTeatroBean.crearAdminTeatro()}" icon="pi pi-plus-circle" update="@form,crud_admin:lista" />
+                    <p:growl for= "mensaje_bean" showDetail="true" />
+                </h:form>
+
+            </p:dialog>
+        </div>
+
+    </ui:define>
+</ui:composition>
+
+</html>

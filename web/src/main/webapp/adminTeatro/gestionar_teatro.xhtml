@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<ui:composition template="/WEB-INF/templateAdm.xhtml">
+<ui:define name="content">
+
+    <div jsf:id = "gestionar_teatros" class="container">
+
+    <h:form id="crud_teatro">
+        <p:toolbar>
+            <p:toolbarGroup>
+                <p:commandButton value="Agregar" icon="pi pi-plus" styleClass="ui-button-success" style="margin-right: .5rem" action="#{teatroBean.crearTeatroDialogo()}" update="dialogo_crear" oncomplete="PF('crear_teatro').show()"/>
+                <p:commandButton id="btn_borrar" value="#{teatroBean.mensajeBorrar}" icon="pi pi-trash" disabled="#{teatroBean.teatrosSeleccionados.size()==0}" styleClass="ui-button-danger" style="margin-right: .5rem" action="#{teatroBean.eliminarTeatro}" update="crud_teatro:lista,@this"/>
+            </p:toolbarGroup>
+        </p:toolbar>
+
+
+
+        <p:panel header="Lista de teatros">
+            <p:dataTable id="lista" value="#{teatroBean.teatros}" var="teatro" paginator="true" rows="5"
+                         rowKey="#{teatro.codigo}"
+                         paginatorPosition="bottom" rowSelectMode="add" reflow="true"
+                         selection="#{teatroBean.teatrosSeleccionados}">
+
+                <p:ajax event="rowSelect" update="crud_teatro:btn_borrar" />
+                <p:ajax event="rowUnselect" update="crud_teatro:btn_borrar" />
+                <p:ajax event="rowSelectCheckbox" update="crud_teatro:btn_borrar" />
+                <p:ajax event="rowUnselectCheckbox" update="crud_teatro:btn_borrar" />
+                <p:ajax event="toggleSelect" update="crud_teatro:btn_borrar" />
+
+                <p:column selectionMode="multiple" exportable="false"/>
+
+                <p:column headerText="Codigo">
+                    <h:outputText value="#{teatro.codigo}"/>
+                </p:column>
+
+                <p:column headerText="Nombre">
+                    <h:outputText value="#{teatro.nombre}"/>
+                </p:column>
+
+                <p:column headerText="Direccion">
+                    <h:outputText value="#{teatro.direccion}"/>
+                </p:column>
+
+                <p:column headerText="Telefono">
+                    <h:outputText value="#{teatro.telefono}"/>
+                </p:column>
+
+                <p:column headerText="Ciudad">
+                    <h:outputText value="#{teatro.ciudad.nombre}"/>
+                </p:column>
+
+                <p:column headerText="Administrador">
+                    <h:outputText value="#{teatro.administradorTeatro.nombre}"/>
+                </p:column>
+
+                <p:column headerText="Editar">
+                    <p:commandButton styleClass="edit-button rounded-button ui-button-success" icon="pi pi-pencil" action="#{teatroBean.seleccionarTeatro(teatro)}" oncomplete="PF('crear_teatro').show()" update="dialogo_crear"/>
+                </p:column>
+
+            </p:dataTable>
+        </p:panel>
+    </h:form>
+
+
+
+    <p:dialog id="dialogo_crear" widgetVar="crear_teatro" modal="true" header="#{teatroBean.mensajeCrear}" showEffect="fade">
+
+        <h:form>
+            <h:panelGrid columns="3" cellpadding="5">
+
+                <p:outputLabel for="nombre_teatro" value="Nombre:" />
+                <p:inputText id="nombre_teatro" value="#{teatroBean.teatro.nombre}" required="true" />
+                <p:message for ="nombre_teatro" />
+
+                <p:outputLabel for="direccion_teatro" value="Dirección:" />
+                <p:inputText id="direccion_teatro" value="#{teatroBean.teatro.direccion}" required="true" />
+                <p:message for ="direccion_teatro" />
+
+                <p:outputLabel for="telefono_teatro" value="Telefono:" />
+                <p:inputText id="telefono_teatro" value="#{teatroBean.teatro.telefono}" required="true" />
+                <p:message for ="telefono_teatro" />
+
+                <p:outputLabel for="ciudad_teatro" value="Ciudad:" />
+                <p:selectOneMenu id="ciudad_teatro" value="#{teatroBean.teatro.ciudad}" converter="#{ciudadConverter}">
+                    <f:selectItem itemLabel="Seleccione una ciudad" noSelectionOption="true" itemValue="#{null}" />
+                    <f:selectItems value="#{teatroBean.ciudades}" var="ciudad" itemLabel="#{ciudad.nombre}" itemValue="#{ciudad}" />
+                </p:selectOneMenu>
+                <p:message for ="ciudad_teatro" />
+
+            </h:panelGrid>
+            <p:commandButton value="#{teatroBean.mensajeCrear}" action="#{teatroBean.crearTeatro()}" icon="pi pi-plus-circle" update="@form,crud_teatro:lista" />
+            <p:growl for= "mensaje_bean" showDetail="true" />
+        </h:form>
+
+    </p:dialog>
+    </div>
+
+</ui:define>
+</ui:composition>
+
+</html>

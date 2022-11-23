@@ -1,9 +1,11 @@
 package co.edu.uniquindio.unicine.entidades;
 
 import lombok.*;
+import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
@@ -20,14 +22,19 @@ public class Persona implements Serializable {
     @EqualsAndHashCode.Include
     private Integer codigo;
 
+    @Length(max = 100)
     @Column(length = 100, nullable = false)
     private String nombre;
 
     @Email
+    @Length(max = 100)
+    @NotNull
     @Column(length = 100, nullable = false, unique = true)
     private String correo;
 
     @ToString.Exclude
+    @Length(max = 16)
+    @NotNull
     @Column(nullable = false, length = 16)
     private String password;
 

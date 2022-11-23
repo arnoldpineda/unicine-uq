@@ -13,14 +13,17 @@ import java.util.List;
 
 @Entity
 @NoArgsConstructor
+@Getter @Setter
 @ToString(callSuper = true)
 public class Cliente extends Persona implements Serializable {
 
+    @NotNull
     @Column(nullable = false)
     private Integer cedula;
 
+    @Length(max = 200)
     @Column(nullable = false, length = 200)
-    private String urlFoto;
+    private String urlFoto = "";
 
     @Column(nullable = false)
     private Boolean estado;

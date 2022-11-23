@@ -6,6 +6,7 @@ import co.edu.uniquindio.unicine.entidades.CuponCliente;
 import co.edu.uniquindio.unicine.entidades.Pelicula;
 import co.edu.uniquindio.unicine.repo.ClienteRepo;
 import co.edu.uniquindio.unicine.repo.CuponClienteRepo;
+import co.edu.uniquindio.unicine.repo.FuncionRepo;
 import co.edu.uniquindio.unicine.repo.PeliculaRepo;
 import org.springframework.stereotype.Service;
 
@@ -20,11 +21,14 @@ public class ClienteServicioImpl implements ClienteServicio {
     private final CuponClienteRepo cuponClienteRepo;
     private final EmailServicio emailServicio;
 
-    public ClienteServicioImpl(ClienteRepo clienteRepo, PeliculaRepo peliculaRepo, CuponClienteRepo cuponClienteRepo, EmailServicio emailServicio) {
+    private final FuncionRepo funcionRepo;
+
+    public ClienteServicioImpl(ClienteRepo clienteRepo, PeliculaRepo peliculaRepo, CuponClienteRepo cuponClienteRepo, EmailServicio emailServicio, FuncionRepo funcionRepo) {
         this.clienteRepo = clienteRepo;
         this.peliculaRepo = peliculaRepo;
         this.cuponClienteRepo = cuponClienteRepo;
         this.emailServicio = emailServicio;
+        this.funcionRepo = funcionRepo;
     }
 
     @Override
@@ -44,7 +48,6 @@ public class ClienteServicioImpl implements ClienteServicio {
         if (cliente == null) {
             throw new Exception("Los datos de autenticación son incorrectos");
         }
-        emailServicio.enviarEmail("Registro en unicine", "Debe ir al siguiente enlace para activar la cuenta", cliente.getCorreo());
         return cliente;
     }
 
@@ -53,10 +56,13 @@ public class ClienteServicioImpl implements ClienteServicio {
 
         boolean correoExiste = correoEsRepetido(cliente.getCorreo());
 
-        if (correoExiste) {
-            throw new Exception("El correo ya existe");
+        if (correoExiste){
+            throw new Exception("El correo ya está registrado");
         }
-        return clienteRepo.save(cliente);
+        cliente.setEstado(false);
+        Cliente registro = clienteRepo.save(cliente);
+        emailServicio.enviarEmail("Registro en unicine", "Debe ir al siguiente enlace para activar la cuenta", cliente.getCorreo());
+        return registro;
     }
 
     //Si devuelve un valor diferente a null, es por que esta repetido, es true
@@ -126,5 +132,21 @@ public class ClienteServicioImpl implements ClienteServicio {
         }
         return guardado.get();
     }
+
+    @Override
+    public List<Funcion> listarPorCiudad(Integer codigoCiudad) throws Exception {
+        return funcionRepo.listarFuncionesCiudad(codigoCiudad);
+    }
+
+    @Override
+    public List<Pelicula> listarPorEstadoCiudad(EstadoPelicula estadoPelicula, Integer codigoCiudad) throws Exception {
+        return funcionRepo.listarPeliculasEstadoCiudad(codigoCiudad, estadoPelicula);
+    }
+
+    @Override
+    public List<Pelicula> listarPorEstado(EstadoPelicula estadoPelicula) throws Exception {
+        return funcionRepo.listarPeliculasEstado(estadoPelicula);
+    }
+
 
 }

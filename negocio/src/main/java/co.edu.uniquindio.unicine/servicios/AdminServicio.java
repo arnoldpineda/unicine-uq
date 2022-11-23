@@ -57,6 +57,8 @@ public interface AdminServicio {
 
     Ciudad obtenerCiudad(Integer codigo)throws Exception;
 
+    List<Ciudad> listarCiudades();
+
 
 
 }
