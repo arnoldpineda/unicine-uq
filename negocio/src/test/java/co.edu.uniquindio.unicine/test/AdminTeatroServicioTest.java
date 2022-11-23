@@ -71,7 +71,7 @@ public class AdminTeatroServicioTest {
 
     @Test
     @Sql("classpath:dataset.sql")
-    public void eliminarPeliculaTest() {
+    public void eliminarHorarioTest() {
 
         try {
             adminTeatroServicio.eliminarHorario(1);

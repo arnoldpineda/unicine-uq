@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Nuevo registro cliente</title>
+</h:head>
+
+
+
+    <h:body>
+        <div jsf:id = "registro" class="container">
+
+        <h:form>
+            <p:panel header="Registro de cliente">
+
+                <h:panelGrid columns="3" cellpadding="5">
+
+                    <p:outputLabel for="nombre_cliente" value="Nombre:" />
+                    <p:inputText id="nombre_cliente" value="#{clienteBean.cliente.nombre}" required="true" />
+                    <p:message for ="nombre_cliente" />
+
+                    <p:outputLabel for="cedula_cliente" value="Cedula:" />
+                    <p:inputText id="cedula_cliente" value="#{clienteBean.cliente.cedula}" required="true" />
+                    <p:message for ="cedula_cliente" />
+
+                    <p:outputLabel for="correo_cliente" value="Email:" />
+                    <p:inputText id="correo_cliente" value="#{clienteBean.cliente.correo}" required="true" />
+                    <p:message for ="correo_cliente" />
+
+                    <p:outputLabel for="password_cliente" value="Contraseña:" />
+                    <p:password id="password_cliente" value="#{clienteBean.cliente.password}" required="true" feedback="true" toggleMask="true" redisplay="true"/>
+                    <p:message for ="password_cliente" />
+
+                    <p:outputLabel for="password_conf_cliente" value="Confirmar Contraseña:" />
+                    <p:password id="password_conf_cliente" value="#{clienteBean.confirmacionPassword}" required="true" feedback="true" toggleMask="true" redisplay="true"/>
+                    <p:message for ="password_conf_cliente" />
+
+                </h:panelGrid>
+                <p:commandButton value="Registrarse" action="#{clienteBean.registrarCliente()}" update="@form" />
+                <p:growl for= "mensaje_bean" showDetail="true" />
+
+            </p:panel>
+        </h:form>
+        </div>
+
+    </h:body>
+
+
+</html>

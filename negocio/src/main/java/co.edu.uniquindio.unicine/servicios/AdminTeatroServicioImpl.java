@@ -110,7 +110,6 @@ public class AdminTeatroServicioImpl implements AdminTeatroServicio {
     public Teatro crearTeatro(Teatro teatro) throws Exception {
 
         boolean ciudad = ciudadExiste(teatro.getCiudad().getCodigo());
-        //boolean adminTeatro = adminiTeatroExiste(teatro.getCodigo());
         if (ciudad) {
             return teatroRepo.save(teatro);
         }
@@ -163,7 +162,11 @@ public class AdminTeatroServicioImpl implements AdminTeatroServicio {
 
     @Override
     public Funcion crearFuncion(Funcion funcion) throws Exception {
-        return null;
+        List<Funcion> funciones = funcionRepo.obtenerFuncionesSala(funcion.getHorario(), funcion.getSala().getCodigo());
+        if(!funciones.isEmpty()){
+            throw new Exception("Ya hay una funcion en esa sala a esa hora");
+        }
+        return  funcionRepo.save(funcion);
     }
 
     @Override
@@ -203,7 +206,7 @@ public class AdminTeatroServicioImpl implements AdminTeatroServicio {
 
     @Override
     public Sala crearSala(Sala sala) throws Exception {
-        return null;
+        return salaRepo.save(sala);
     }
 
     @Override

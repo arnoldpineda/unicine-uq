@@ -1,12 +1,6 @@
 package co.edu.uniquindio.unicine.test;
 
-import co.edu.uniquindio.unicine.entidades.Administrador;
-import co.edu.uniquindio.unicine.entidades.AdministradorTeatro;
-import co.edu.uniquindio.unicine.entidades.Ciudad;
-import co.edu.uniquindio.unicine.entidades.Confiteria;
-import co.edu.uniquindio.unicine.entidades.Cupon;
-import co.edu.uniquindio.unicine.entidades.Genero;
-import co.edu.uniquindio.unicine.entidades.Pelicula;
+import co.edu.uniquindio.unicine.entidades.*;
 import co.edu.uniquindio.unicine.servicios.AdminServicio;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -102,7 +96,7 @@ public class AdminServicioTest {
     @Test
     @Sql("classpath:dataset.sql")
     public void crearPeliculaTest(){
-        Pelicula pelicula = Pelicula.builder().nombre("Harry Poter").sinopsis("Sinopsis").urlTrailer("Trailer").urlImagen("Imagen").estado(true).reparto("reparto").genero(Genero.valueOf("CIENCIA_FICCION")).build();
+        Pelicula pelicula = Pelicula.builder().nombre("Harry Poter").sinopsis("Sinopsis").urlTrailer("Trailer").urlImagen("Imagen").estado(EstadoPelicula.valueOf("CARTELERA")).generos(null).reparto("reparto").build();
 
         Pelicula nuevo = adminServicio.crearPelicula(pelicula);
         Assertions.assertNotNull(nuevo);

@@ -32,8 +32,9 @@ public class Pelicula implements Serializable {
     @Column(nullable = false)
     private String urlImagen;
 
+    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private Boolean estado;
+    private EstadoPelicula estado;
 
     @Lob
     @Column(nullable = false)
@@ -43,18 +44,19 @@ public class Pelicula implements Serializable {
     @OneToMany(mappedBy = "pelicula")
     private List<Funcion> funciones;
 
+    @ElementCollection
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private Genero genero;
+    private List<Genero> generos;
 
     @Builder
-    public Pelicula(String nombre, String sinopsis, String urlTrailer, String urlImagen, Boolean estado, String reparto, Genero genero) {
+    public Pelicula(String nombre, String sinopsis, String urlTrailer, String urlImagen, EstadoPelicula estado, String reparto, List<Genero> generos) {
         this.nombre = nombre;
         this.sinopsis = sinopsis;
         this.urlTrailer = urlTrailer;
         this.urlImagen = urlImagen;
         this.estado = estado;
         this.reparto = reparto;
-        this.genero = genero;
+        this.generos = generos;
     }
 }

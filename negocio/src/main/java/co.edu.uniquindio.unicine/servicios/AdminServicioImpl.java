@@ -243,4 +243,9 @@ public class AdminServicioImpl implements AdminServicio{
         return guardado.get();
     }
 
+    @Override
+    public List<Ciudad> listarCiudades() {
+        return ciudadRepo.findAll();
+    }
+
 }
